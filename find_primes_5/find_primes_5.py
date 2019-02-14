@@ -1,21 +1,16 @@
-# 10001st PRIME - 5%
-def primes(n):
-    for i in range(2,int(n/2)):
-        if n % i == 0:
-            return False
-    return True
-    
-def countprimes(target):
+def find_primes(n):
     '''
-    Finds the nth prime, starting 2 (n = 1)
+    Returns all prime numbers up until n
     '''
-    counter = 1
-    num = 3
-    while counter <= target:
-        if primes(num):
-            counter += 1
-        if counter == target:
-            return num
-        num +=2
-    return num
-        
+    primes_list = [2]
+    for i in range(3,n):
+        prime = True
+        if i % 2 != 0:
+            for j in range(3,int(sqrt(i)+1),2):
+                if i % j == 0:
+                    prime = False
+        else:
+            prime = False
+        if prime == True:
+            primes_list.append(i)
+    return primes_list
